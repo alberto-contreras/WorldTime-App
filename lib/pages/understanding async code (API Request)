@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  @override
+  _ChooseLocationState createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+
+  int counter = 0;
+
+  void getData() async {
+    //Simulate network request
+    await Future.delayed(Duration(seconds: 3), () { //With the await we are saying that until we have the answer we don't execute next code
+      //so we convert from async to sync and for example if we need data for the next request
+      print('Yoshi');
+    });
+    //Sumulate network: we need to wait to get the bio of username
+    await Future.delayed(Duration(seconds: 2), () {
+      print('The best runner');
+    });
+
+    print('Statement');//Will be printed before Yoshi because it does not wait
+  }
+
+  @override //This function it's the one that runs first
+  void initState() {
+    super.initState();//First run the original function that we inherit
+    //Each that we run init we run then the build function
+    getData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+    }
