@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worldtimeapp/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
   @override
@@ -7,8 +8,16 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
 
-  int counter = 0;
-
+  List<WorldTime> locations = [
+    WorldTime(url: 'Europe/London', location: 'London', flag: 'uk.png'),
+    WorldTime(url: 'Europe/Berlin', location: 'Athens', flag: 'greece.png'),
+    WorldTime(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
+    WorldTime(url: 'Africa/Nairobi', location: 'Nairobi', flag: 'kenya.png'),
+    WorldTime(url: 'America/Chicago', location: 'Chicago', flag: 'usa.png'),
+    WorldTime(url: 'America/New_York', location: 'New York', flag: 'usa.png'),
+    WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
+    WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
+  ];
 
 
   @override
@@ -21,14 +30,21 @@ class _ChooseLocationState extends State<ChooseLocation> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: RaisedButton(onPressed: () {
-        setState(() { //Always when we set the state we run the build function
-          counter = counter + 1;
-        });
-      },
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical:1.0, horizontal: 4.0),
+          itemCount: locations.length,
+      itemBuilder: (context,index){ //This function will make a widget tree of the one we choose
+          return Card(
+            child: ListTile(
+              onTap: (){
 
-        child: Text('Counter is $counter'),
-        ),
+              },//Link on press function
+              title: Text(
+                locations[index].location
+              ),
+            )
+          );
+      },)
     );
   }
 }
