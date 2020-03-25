@@ -18,6 +18,21 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
     WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
   ];
+  //This function it's going use getTime on wherever instance and then once we have the data re root to the home page
+  void updateTime(index) async
+  {
+    WorldTime instance = locations[index]; //now we have the instance stored
+    await instance.getTime();
+    //We are going to navigate to home page and passing the data
+    Navigator.pop(context,  { //We use pop (PILA DE PAGINAS) to get back to the homepage that we where before the choose_location
+      'location': instance.location,
+      'flag': instance.flag,
+      'time':instance.time,
+      'isDaytime':instance.isDaytime,
+
+    });
+
+  }
 
 
   @override
@@ -37,10 +52,11 @@ class _ChooseLocationState extends State<ChooseLocation> {
           return Card(
             child: ListTile(
               onTap: (){
-
+                updateTime(index); //Here we update with the one we choose
               },//Link on press function
-              title: Text(
-                locations[index].location
+              title: Text(locations[index].location),
+              leading: CircleAvatar(
+                backgroundImage: AssetImage('assets/${locations[index]}'),
               ),
             )
           );

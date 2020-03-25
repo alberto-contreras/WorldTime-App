@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments; //Getting the values from loading page
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments; //Getting the values from loading page or from the choose_location
     print(data);
 
     //set background we also use a ternary operator
@@ -34,10 +34,21 @@ class _HomeState extends State<Home> {
               child: Column(
               children: <Widget>[
                 FlatButton.icon(
-                    onPressed:(){
+                    onPressed:() async {
                       //We are pushing to another route that we can then came back thanks
                       //to the appbar that by default let us an arrow
-                      Navigator.pushNamed(context,'/location');
+                      dynamic result = await Navigator.pushNamed(context,'/location');
+                      //we put in a dynamic variable because when are doing a big async task
+                      //first we go to the other page and choose one of the places and pop with new data that we store in result
+                      setState(() { //and now we update all the diff values so we rebuild
+                        data={ //Problem is that we rewrite so we need to check if is empty or not
+                          'location':result['location'],
+                          'flag': result['flag'],
+                          'time': result['time'],
+                          'isDaytime' : result['isDaytime'],
+
+                        };
+                      });
                     },
                   icon: Icon(
                       Icons.edit_location,

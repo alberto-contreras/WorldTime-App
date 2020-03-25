@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -22,6 +21,7 @@ class WorldTime {
       Map data = jsonDecode(response.body);
       print(data);
 
+
       //get properties from data
       String datetime = data['utc_datetime'];
       String offset = data['utc_offset'].substring(1,3);//With substring we go from position 1 to 3 --> 01
@@ -33,6 +33,7 @@ class WorldTime {
       now = now.add(Duration(hours: int.parse(offset))); //Right time in Madrid because we add the offset
       //isDaytime = condition ? true : false -> ternary operator
       isDaytime = now.hour > 6 && now.hour < 20 ? true : false ;
+      print(isDaytime);
       //if the hour is between 6 and 20 it's day so it's true if not it's false = night
       time = DateFormat.jm().format(now); //Set the property time
     }

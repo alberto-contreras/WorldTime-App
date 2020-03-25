@@ -14,5 +14,5 @@ void main() => runApp(MaterialApp(
     '/':(context) => Loading(), //Basic route context-> where we are we execute a function in this case we load all the data
     '/home':(context) => Home(),
     '/location': (context) => ChooseLocation(),
-  },
+  }
 ));
