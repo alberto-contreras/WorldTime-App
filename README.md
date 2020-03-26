@@ -1,6 +1,8 @@
 # worldtimeapp
 
-Flutter complete application, that provide us the world time app (Thanks to The Net Ninja Tutorial)
+Flutter complete application, that provide us the world time app (Thanks to The Net Ninja Tutorial -> @imshaunjp)
+
+API --> http://worldtimeapi.org
 
 ## Getting Started
 

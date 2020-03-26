@@ -56,7 +56,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
               },//Link on press function
               title: Text(locations[index].location),
               leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/${locations[index]}'),
+                backgroundImage: AssetImage('assets/${locations[index].flag}'),
               ),
             )
           );
